@@ -1,7 +1,7 @@
 # Flutter Communication App
 This Flutter-based application is designed to provide seamless and efficient communication experiences for users. With integrated video calling, voice calling, and text chat features, this app offers a comprehensive solution for real-time communication needs.
 
-### Key Features
+## Key Features
 - **Video Calls** : Connect with friends, family, or colleagues through high-quality video calls. Enjoy face-to-face conversations and stay connected regardless of the distance.
 
 - **Voice Calls** : Make crystal-clear voice calls to individuals or groups. Whether it's a quick catch-up or a conference call, this app ensures reliable and smooth audio communication.
@@ -14,7 +14,7 @@ This Flutter-based application is designed to provide seamless and efficient com
 
 - **Secure Communication** : Prioritizing user privacy and data security, this app employs robust encryption and authentication mechanisms to ensure secure and confidential communication.
 
-### Technologies Used
+## Technologies Used
 - **Flutter** : The app is developed using Flutter, a popular and versatile framework for building cross-platform applications.
 
 - **Firebase** : Firebase integration is utilized for handling real-time data synchronization, authentication, and push notifications.
