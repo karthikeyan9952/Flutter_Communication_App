@@ -4,15 +4,13 @@ This Flutter-based application is designed to provide seamless and efficient com
 Key Features
 Video Calls: Connect with friends, family, or colleagues through high-quality video calls. Enjoy face-to-face conversations and stay connected regardless of the distance.
 
-Voice Calls: Make crystal-clear voice calls to individuals or groups. Whether it's a quick catch-up or a conference call, this app ensures reliable and smooth audio communication.
+# Voice Calls: Make crystal-clear voice calls to individuals or groups. Whether it's a quick catch-up or a conference call, this app ensures reliable and smooth audio communication.
 
 Text Chat: Send instant messages to individuals or groups in real-time. Stay connected with your contacts through a seamless and user-friendly text chat interface.
 
 Multi-platform Support: Built using Flutter, this app is compatible with both Android and iOS platforms, ensuring broad accessibility and convenience for users on different devices.
 
 Real-time Updates: Receive instant notifications for incoming calls, messages, and other important events. Stay informed and connected with your contacts at all times.
-
-User-friendly Interface: The app features an intuitive and visually appealing user interface, making it easy for users of all levels of technical expertise to navigate and utilize its functionalities.
 
 Secure Communication: Prioritizing user privacy and data security, this app employs robust encryption and authentication mechanisms to ensure secure and confidential communication.
 
