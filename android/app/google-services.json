@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "272029280194",
+    "project_id": "realtime-communication-app",
+    "storage_bucket": "realtime-communication-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272029280194:android:4676573e085aeccdacd85b",
+        "android_client_info": {
+          "package_name": "com.KCCreations.realtime_communication_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272029280194-j2a823f2blvfjhgth48fto37ue757d7r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAH62YRoVyL3BrwhpKQ3CEmF1dIUT8uBlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272029280194-j2a823f2blvfjhgth48fto37ue757d7r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
