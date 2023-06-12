@@ -6,7 +6,7 @@ This Flutter-based application is designed to provide seamless and efficient com
 
 - Voice Calls: Make crystal-clear voice calls to individuals or groups. Whether it's a quick catch-up or a conference call, this app ensures reliable and smooth audio communication.
 
-- Text Chat: Send instant messages to individuals or groups in real-time. Stay connected with your contacts through a seamless and user-friendly text chat interface.
+- Text Chat -: Send instant messages to individuals or groups in real-time. Stay connected with your contacts through a seamless and user-friendly text chat interface.
 
 - Multi-platform Support: Built using Flutter, this app is compatible with both Android and iOS platforms, ensuring broad accessibility and convenience for users on different devices.
 
