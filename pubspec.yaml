@@ -47,6 +47,7 @@ dependencies:
   cached_network_image: ^3.2.3
   firebase_messaging: ^14.6.3
   awesome_notifications: ^0.6.19
+  http: ^0.13.6
 
 dev_dependencies:
   flutter_test:
