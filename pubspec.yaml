@@ -45,6 +45,8 @@ dependencies:
   firebase_auth: ^4.6.2
   google_sign_in: ^6.1.4
   cached_network_image: ^3.2.3
+  firebase_messaging: ^14.6.3
+  awesome_notifications: ^0.6.19
 
 dev_dependencies:
   flutter_test:
