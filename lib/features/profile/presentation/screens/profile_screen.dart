@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:realtime_communication_app/features/login/presentaion/providers/login_provider.dart';
+import 'package:realtime_communication_app/features/authentication/presentaion/providers/user_provider.dart';
 import 'package:realtime_communication_app/services/route/app_routes.dart';
+import 'package:realtime_communication_app/utilities/providers.dart';
 import 'package:realtime_communication_app/widgets/bottom_nav_bar.dart';
 import 'package:realtime_communication_app/widgets/space.dart';
 import 'package:realtime_communication_app/widgets/text_widget.dart';
@@ -12,7 +13,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LoginProvider>(
+    return Consumer<UserProvider>(
       builder: (context, provider, child) {
         return Scaffold(
           appBar: AppBar(
@@ -34,21 +35,22 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: Image.network(provider.currentUser!.photoURL!)),
+                        child: Image.network(provider.user!.profilePicture!)),
                   ],
                 ),
                 const HeightFull(),
                 TextCustom(
-                    value: provider.currentUser!.displayName!,
+                    value: provider.user!.name!,
                     size: 18,
                     fontWeight: FontWeight.bold),
                 const HeightHalf(),
                 TextCustom(
-                  value: provider.currentUser!.email!,
+                  value: provider.user!.email!,
                 ),
                 const Spacer(),
                 ElevatedButton(
-                    onPressed: () => provider.googleSignout().then((value) {
+                    onPressed: () =>
+                        loginProvider.googleSignout().then((value) {
                           context.pushReplacement(AppRoutes.login);
                         }),
                     child: const BtnText(label: "Logout"))

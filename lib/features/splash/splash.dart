@@ -1,8 +1,10 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realtime_communication_app/constants/local_images.dart';
 import 'package:realtime_communication_app/services/route/app_routes.dart';
+import 'package:realtime_communication_app/utilities/providers.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -14,8 +16,15 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) => next());
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      next();
+      getToken();
+    });
     super.initState();
+  }
+
+  getToken() async {
+    userProvider.fcmToken = await FirebaseMessaging.instance.getToken();
   }
 
   void next() async {

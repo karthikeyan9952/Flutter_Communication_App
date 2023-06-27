@@ -23,8 +23,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   GoRouter.optionURLReflectsImperativeAPIs = true;
-  FirebaseMessaging.onMessage
-      .listen(NotificationService().backgroundNotification);
 
   runApp(MultiProvider(providers: providers, child: const MyApp()));
 }

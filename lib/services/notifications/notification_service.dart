@@ -3,8 +3,12 @@ import 'dart:convert';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:realtime_communication_app/features/calls/presentation/screens/call_receiver_screen.dart';
+import 'package:realtime_communication_app/services/route/app_routes.dart';
 import 'package:realtime_communication_app/utilities/keys.dart';
 import 'package:http/http.dart' as http;
+import 'package:realtime_communication_app/utilities/providers.dart';
 
 class NotificationService {
   static const String key =
@@ -56,7 +60,6 @@ class NotificationService {
       if (event.buttonKeyPressed == "REJECT") {
         logger.e("Rejected");
       } else if (event.buttonKeyPressed == "ACCEPT") {
-        logger.w("Accepted");
       } else {
         logger.i("Clicked on notification");
       }
@@ -66,26 +69,42 @@ class NotificationService {
   void foregroundNotification(RemoteMessage message, BuildContext context) {
     String? title = message.notification!.title,
         body = message.notification!.body;
-    showDialog(
-        barrierColor: Colors.transparent,
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return Scaffold(
-              backgroundColor: Colors.black.withOpacity(.4),
-              body: Center(
-                  child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Center(
-                        child: Container(
-                            padding: const EdgeInsets.all(16),
-                            width: MediaQuery.of(context).size.width,
-                            child: Text("data")),
-                      ))));
-        });
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 123,
+            channelKey: "Call_channel",
+            color: Colors.white,
+            title: title,
+            body: body,
+            category: NotificationCategory.Call,
+            wakeUpScreen: true,
+            fullScreenIntent: true,
+            autoDismissible: false,
+            backgroundColor: Colors.orange),
+        actionButtons: [
+          NotificationActionButton(
+              key: "ACCEPT",
+              label: "Accept",
+              color: Colors.green,
+              autoDismissible: true),
+          NotificationActionButton(
+              key: "REJECT",
+              label: "Reject",
+              color: Colors.red,
+              autoDismissible: true)
+        ]);
+    AwesomeNotifications().actionStream.listen((event) {
+      if (event.buttonKeyPressed == "REJECT") {
+        logger.e("Rejected");
+      } else if (event.buttonKeyPressed == "ACCEPT") {
+        context.push(AppRoutes.callReceiver, extra: message.data['room']);
+      } else {
+        logger.i("Clicked on notification");
+      }
+    });
   }
 
-  Future<void> sendNotification(String token) async {
+  Future<void> callNotification(String token, String roomID) async {
     try {
       http.Response response = await http.post(
         Uri.parse("https://fcm.googleapis.com/fcm/send"),
@@ -96,14 +115,15 @@ class NotificationService {
         body: jsonEncode(
           <String, dynamic>{
             'notification': <String, dynamic>{
-              'body': "Karthikeyan",
+              'body': userProvider.user!.name,
               'title': 'Incoming Call',
             },
             'priority': 'high',
             'data': <String, dynamic>{
               'click_action': 'FLUTTER_NOTIFICATION_CLICK',
               'id': '1',
-              'status': 'done'
+              'status': 'done',
+              'room': roomID
             },
             'to': token,
           },

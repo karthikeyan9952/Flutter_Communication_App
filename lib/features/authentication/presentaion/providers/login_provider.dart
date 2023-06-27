@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:realtime_communication_app/features/authentication/models/user.dart'
+    as model;
 import 'package:realtime_communication_app/utilities/keys.dart';
+import 'package:realtime_communication_app/utilities/providers.dart';
 
 class LoginProvider extends ChangeNotifier {
   String _mobile = "";
@@ -21,12 +24,12 @@ class LoginProvider extends ChangeNotifier {
   FirebaseAuth auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  User? _currentUser;
-  User? get currentUser => _currentUser;
-  set currentUser(User? user) {
-    _currentUser = user;
-    notifyListeners();
-  }
+  // User? _currentUser;
+  // User? get currentUser => _currentUser;
+  // set currentUser(User? user) {
+  //   _currentUser = user;
+  //   notifyListeners();
+  // }
 
   Future login() async {
     isLoading = true;
@@ -69,9 +72,6 @@ class LoginProvider extends ChangeNotifier {
     UserCredential authResult = await auth.signInWithCredential(credential);
     var user = authResult.user;
     assert(!user!.isAnonymous);
-    if (auth.currentUser != null) {
-      currentUser = auth.currentUser;
-    }
     return googleSignInAccount;
   }
 

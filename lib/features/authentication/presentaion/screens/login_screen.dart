@@ -2,10 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:realtime_communication_app/constants/local_images.dart';
-import 'package:realtime_communication_app/features/login/presentaion/providers/login_provider.dart';
+import 'package:realtime_communication_app/features/authentication/models/user.dart';
+import 'package:realtime_communication_app/features/authentication/presentaion/providers/login_provider.dart';
 import 'package:realtime_communication_app/services/route/app_routes.dart';
+import 'package:realtime_communication_app/utilities/providers.dart';
 import 'package:realtime_communication_app/widgets/buttons.dart';
 import 'package:realtime_communication_app/widgets/space.dart';
 import 'package:realtime_communication_app/widgets/text_fields.dart';
@@ -62,9 +65,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: SocialButton(
                     label: "Google",
                     imgPath: LocalImages.google,
-                    voidCallback: () => provider
-                        .signInWithGoogle(context)
-                        .then((value) => context.push(AppRoutes.chats)),
+                    voidCallback: () => provider.signInWithGoogle(context).then(
+                        (GoogleSignInAccount account) => userProvider
+                            .addUser(
+                                user: User(
+                                    id: account.id,
+                                    name: account.displayName,
+                                    email: account.email,
+                                    profilePicture: account.photoUrl,
+                                    fcm: userProvider.fcmToken))
+                            .then((value) => context.push(AppRoutes.chats))),
                     color: Colors.white,
                   ),
                 ),
