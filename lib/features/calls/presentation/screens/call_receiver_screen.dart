@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realtime_communication_app/services/network/signaling.dart';
-import 'package:realtime_communication_app/utilities/keys.dart';
 import 'package:realtime_communication_app/widgets/space.dart';
 
 class CallReceiverScreen extends StatefulWidget {

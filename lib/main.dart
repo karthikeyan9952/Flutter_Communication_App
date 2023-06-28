@@ -24,7 +24,7 @@ void main() async {
   );
   GoRouter.optionURLReflectsImperativeAPIs = true;
 
-  runApp(MultiProvider(providers: providers, child: const MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -32,17 +32,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeManager>(
-      builder: (context, theme, child) {
-        return MaterialApp.router(
-          key: materialKey,
-          title: 'Realtime Communication App',
-          theme: lightTheme,
-          darkTheme: darkTheme,
-          themeMode: theme.themeMode,
-          routerConfig: router,
-        );
-      },
+    return MultiProvider(
+      providers: providers(context),
+      child: Consumer<ThemeManager>(
+        builder: (context, theme, child) {
+          return MaterialApp.router(
+            key: materialKey,
+            title: 'Realtime Communication App',
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            themeMode: theme.themeMode,
+            routerConfig: router,
+          );
+        },
+      ),
     );
   }
 }

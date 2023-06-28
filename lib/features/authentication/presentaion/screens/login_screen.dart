@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     : ElevatedButton(
                         onPressed: () {
                           provider.mobile = _mobileController.text;
-                          provider.login();
+                          provider.phoneSignIn(context);
                         },
                         child: const BtnText(label: "Continue")),
                 const HeightFull(),
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     email: account.email,
                                     profilePicture: account.photoUrl,
                                     fcm: userProvider.fcmToken))
-                            .then((value) => context.push(AppRoutes.chats))),
+                            .then((value) => context.replace(AppRoutes.chats))),
                     color: Colors.white,
                   ),
                 ),

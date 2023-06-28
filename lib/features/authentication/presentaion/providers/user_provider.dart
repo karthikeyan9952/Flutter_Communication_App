@@ -84,7 +84,7 @@ class UserProvider extends ChangeNotifier {
         'email': doc.get('email'),
       };
       User user = User.fromJson(data);
-      if (user.id != this.user!.id) {
+      if (user.email != this.user!.email) {
         users.add(user);
       }
     }
