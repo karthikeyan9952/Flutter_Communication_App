@@ -2,8 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:realtime_communication_app/features/authentication/models/user.dart'
-    as model;
 import 'package:realtime_communication_app/utilities/keys.dart';
 import 'package:realtime_communication_app/utilities/snackbar.dart';
 
@@ -136,7 +134,6 @@ class LoginProvider extends ChangeNotifier {
                 verificationId: verificationId,
                 smsCode: codeController.text.trim(),
               );
-
               // !!! Works only on Android, iOS !!!
               await auth.signInWithCredential(credential);
               Navigator.of(context).pop(); // Remove the dialog box

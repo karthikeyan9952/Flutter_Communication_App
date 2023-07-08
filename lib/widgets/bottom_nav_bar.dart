@@ -25,11 +25,12 @@ class BottomNavBar extends StatelessWidget {
                   ? Icon(CupertinoIcons.chat_bubble_fill,
                       color: ColorConfig.primary, size: size)
                   : Icon(CupertinoIcons.chat_bubble, size: size)),
-          // NavItem(
-          //     route: AppRoutes.calls,
-          //     icon: GoRouter.of(context).location == AppRoutes.calls
-          //         ? Icon(CupertinoIcons.phone_fill, color: ColorConfig.primary, size: size)
-          //         :  Icon(CupertinoIcons.phone, size: size)),
+          NavItem(
+              route: AppRoutes.calls,
+              icon: GoRouter.of(context).location == AppRoutes.calls
+                  ? Icon(CupertinoIcons.phone_fill,
+                      color: ColorConfig.primary, size: size)
+                  : Icon(CupertinoIcons.phone, size: size)),
           NavItem(
               route: AppRoutes.profile,
               icon: GoRouter.of(context).location == AppRoutes.profile

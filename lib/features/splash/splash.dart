@@ -8,7 +8,6 @@ import 'package:realtime_communication_app/constants/local_images.dart';
 import 'package:realtime_communication_app/features/authentication/models/user.dart'
     as userModel;
 import 'package:realtime_communication_app/services/route/app_routes.dart';
-import 'package:realtime_communication_app/utilities/keys.dart';
 import 'package:realtime_communication_app/utilities/providers.dart';
 
 class Splash extends StatefulWidget {

@@ -1,6 +1,4 @@
 import 'package:go_router/go_router.dart';
-import 'package:realtime_communication_app/features/calls/presentation/screens/call_maker_screen.dart';
-import 'package:realtime_communication_app/features/calls/presentation/screens/call_receiver_screen.dart';
 import 'package:realtime_communication_app/features/calls/presentation/screens/calls_screen.dart';
 import 'package:realtime_communication_app/features/chats/presentation/screens/chats_screen.dart';
 import 'package:realtime_communication_app/features/authentication/presentaion/screens/login_screen.dart';
@@ -34,18 +32,6 @@ final router = GoRouter(
     GoRoute(
       path: AppRoutes.profile,
       builder: (context, state) => const ProfileScreen(),
-    ),
-    GoRoute(
-      path: AppRoutes.callMaker,
-      builder: (context, state) => CallMakerScreen(
-        fcm: state.extra as String,
-      ),
-    ),
-    GoRoute(
-      path: AppRoutes.callReceiver,
-      builder: (context, state) => CallReceiverScreen(
-        roomID: state.extra as String,
-      ),
     ),
   ],
 );

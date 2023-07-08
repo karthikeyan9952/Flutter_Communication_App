@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:realtime_communication_app/constants/local_images.dart';
 import 'package:realtime_communication_app/features/authentication/models/user.dart';
 import 'package:realtime_communication_app/features/authentication/presentaion/providers/login_provider.dart';
 import 'package:realtime_communication_app/services/route/app_routes.dart';
+import 'package:realtime_communication_app/utilities/keys.dart';
 import 'package:realtime_communication_app/utilities/providers.dart';
 import 'package:realtime_communication_app/widgets/buttons.dart';
 import 'package:realtime_communication_app/widgets/space.dart';
@@ -67,14 +69,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     imgPath: LocalImages.google,
                     voidCallback: () => provider.signInWithGoogle(context).then(
                         (GoogleSignInAccount account) => userProvider
-                            .addUser(
-                                user: User(
-                                    id: account.id,
-                                    name: account.displayName,
-                                    email: account.email,
-                                    profilePicture: account.photoUrl,
-                                    fcm: userProvider.fcmToken))
-                            .then((value) => context.replace(AppRoutes.chats))),
+                                .addUser(
+                                    user: User(
+                                        id: account.id,
+                                        name: account.displayName,
+                                        email: account.email,
+                                        profilePicture: account.photoUrl,
+                                        fcm: userProvider.fcmToken))
+                                .then((value) async {
+                              await _handleCameraPermission(Permission.camera);
+                              await _handleMicPermission(Permission.microphone);
+                              if (!mounted) {
+                                return;
+                              }
+                              context.replace(AppRoutes.chats);
+                            })),
                     color: Colors.white,
                   ),
                 ),
@@ -93,6 +102,16 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       },
     );
+  }
+
+  Future _handleCameraPermission(Permission permission) async {
+    final status = await permission.request();
+    logger.i(status);
+  }
+
+  Future _handleMicPermission(Permission permission) async {
+    final status = await permission.request();
+    logger.i(status);
   }
 
   @override
