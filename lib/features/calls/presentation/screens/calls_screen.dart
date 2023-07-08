@@ -106,7 +106,7 @@ class _CallsScreenState extends State<CallsScreen> {
         context,
         MaterialPageRoute(
             builder: (context) =>
-                CallUI(channelName: channelController.text, roleType: role!)));
+                CallUI(channelName: channelController.text, roleType: role)));
   }
 
   @override

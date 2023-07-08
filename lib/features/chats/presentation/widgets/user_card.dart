@@ -58,7 +58,7 @@ class UserCard extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CallUI(
+                            builder: (context) => const CallUI(
                                 channelName: "Testing",
                                 roleType: ClientRoleType.clientRoleBroadcaster),
                           ));
